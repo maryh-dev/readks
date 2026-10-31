@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: "Lora", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --app-canvas: #f6f4ee;
+  --app-surface: #ffffff;
+  --app-surface-elevated: #ffffff;
+  --app-surface-subtle: #efece3;
+  --app-border: #e2ddd1;
+  --app-border-hover: #ccc5b7;
+  --app-text-primary: #24201c;
+  --app-text-secondary: #5a544c;
+  --app-text-muted: #7e776e;
+  --app-accent-navy: #1e293b;
+  --app-accent-warm: #c06338;
+}
+
+html.dark {
+  color-scheme: dark;
+  --app-canvas: #0b1326;
+  --app-surface: #121c35;
+  --app-surface-elevated: #182544;
+  --app-surface-subtle: #192747;
+  --app-border: #223459;
+  --app-border-hover: #2f477a;
+  --app-text-primary: #f1f5f9;
+  --app-text-secondary: #9cb2d1;
+  --app-text-muted: #6f86a8;
+  --app-accent-navy: #38bdf8;
+  --app-accent-warm: #e07a48;
+}
+
+/* Tamanho de Fonte Global (Pequeno, Padrão 16px mínimo, Grande, Extra Grande) */
+html[data-font-size="sm"] {
+  font-size: 15px;
+}
+
+html[data-font-size="md"] {
+  font-size: 16px;
+}
+
+html[data-font-size="lg"] {
+  font-size: 18.5px;
+}
+
+html[data-font-size="xl"] {
+  font-size: 21px;
+}
+
+/* Modo Redução de Movimento */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Modo Alto Contraste */
+html.high-contrast {
+  --app-border: #000000;
+  --app-border-hover: #000000;
+}
+
+html.high-contrast * {
+  border-color: #57534e !important;
+}
+
+html.dark.high-contrast {
+  --app-border: #ffffff;
+  --app-border-hover: #ffffff;
+}
+
+html.dark.high-contrast * {
+  border-color: #93c5fd !important;
+}
+
+/* Base Body Styles - Altura de linha confortável entre 1.4 e 1.6 para leitura contínua */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--app-canvas);
+  color: var(--app-text-primary);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Scrollbar sutil adaptada para os dois temas */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6cfc2;
+  border-radius: 9999px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #25385e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b5ac9d;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3b5385;
+}
+
+/* Foco visível acessível para navegação por teclado (WCAG 2.1 AA) */
+:focus-visible {
+  outline: 2px solid var(--app-accent-warm);
+  outline-offset: 2px;
+}
+
+html.dark :focus-visible {
+  outline: 2px solid var(--app-accent-navy);
+  outline-offset: 2px;
+}
+
+/* Evita contornos desagradáveis apenas ao clicar com o mouse */
+:focus:not(:focus-visible) {
+  outline: none;
+}
